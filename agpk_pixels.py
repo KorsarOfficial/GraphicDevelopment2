@@ -11,30 +11,34 @@ pixels = ti.Vector.field(3, dtype=ti.f32, shape=(window_width, window_height))
 
 time = ti.field(dtype=ti.f32, shape=())
 
+# Буква А (русская, перевернутая)
 letter_A = [
-    [0, 1, 1, 0],
+    [1, 0, 0, 1],
     [1, 0, 0, 1],
     [1, 1, 1, 1],
     [1, 0, 0, 1],
-    [1, 0, 0, 1]
+    [0, 1, 1, 0]
 ]
 
+# Буква Г (русская, перевернутая)
 letter_G = [
-    [1, 1, 1, 1],
+    [1, 0, 0, 0],
     [1, 0, 0, 0],
     [1, 0, 0, 0],
     [1, 0, 0, 0],
     [1, 1, 1, 1]
 ]
 
+# Буква П (русская, перевернутая)
 letter_P = [
-    [1, 1, 1, 1],
     [1, 0, 0, 1],
-    [1, 1, 1, 1],
-    [1, 0, 0, 0],
-    [1, 0, 0, 0]
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 1, 1, 1]
 ]
 
+# Буква К (русская)
 letter_K = [
     [1, 0, 0, 1],
     [1, 0, 1, 0],
@@ -166,10 +170,11 @@ def main():
     letter_height = 5
     spacing = 7
     
-    color_A = ti.Vector([1.0, 0.2, 0.2])
-    color_G = ti.Vector([0.2, 1.0, 0.2])
-    color_P = ti.Vector([0.2, 0.2, 1.0])
-    color_K = ti.Vector([1.0, 1.0, 0.2])
+    # Цвета букв А, Г, П, К
+    color_A = ti.Vector([1.0, 0.2, 0.2])  # Красный
+    color_G = ti.Vector([0.2, 1.0, 0.2])  # Зеленый
+    color_P = ti.Vector([0.2, 0.2, 1.0])  # Синий
+    color_K = ti.Vector([1.0, 1.0, 0.2])  # Желтый
     
     total_width = 4 * letter_width * pixel_size + 3 * spacing * pixel_size
     start_x = (window_width - total_width) // 2
@@ -185,6 +190,7 @@ def main():
         
         clear_screen()
         
+        # Рисуем буквы А Г П К в правильном порядке
         draw_letter_with_effects(np_letter_A, start_x, start_y, color_A, shadow_offset)
         draw_letter_with_effects(np_letter_G, start_x + (letter_width + spacing) * pixel_size, 
                                start_y, color_G, shadow_offset)
