@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 """
-Приложение "АГПК из пикселей" с шейдерами для Nuitka
+Демонстрация букв АГПК с пиксельными эффектами (версия для Nuitka)
 """
-# Сначала импортируем патч для Taichi
 try:
     import fix_taichi_path
-    print("Патч для Taichi успешно загружен")
+    print("Патч для Taichi загружен")
 except ImportError as e:
-    print(f"Предупреждение: не удалось загрузить модуль fix_taichi_path: {e}")
+    print(f"Не нашёл модуль fix_taichi_path: {e}")
 
-# Импортируем основные библиотеки
 import os
 import sys
 import math
@@ -201,7 +199,7 @@ def post_process():
 
 def main():
     # Выводим информацию о запуске
-    print("Запуск приложения 'АГПК из пикселей'")
+    print("Запускаю АГПК")
     print(f"Taichi версия: {ti.__version__}")
     
     # Создаем окно
@@ -236,7 +234,7 @@ def main():
     # Начальное время
     current_time = 0.0
     
-    print("Запуск основного цикла")
+    print("Поехали!")
     try:
         while window.running:
             # Обновляем время для анимации
@@ -265,7 +263,7 @@ def main():
             canvas.set_image(pixels)
             window.show()
     except Exception as e:
-        print(f"Произошла ошибка в основном цикле: {e}")
+        print(f"Упс, что-то сломалось: {e}")
         import traceback
         traceback.print_exc()
 
@@ -273,10 +271,10 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"Критическая ошибка: {e}")
+        print(f"Всё упало: {e}")
         import traceback
         traceback.print_exc()
         
         # Чтобы окно с ошибкой не закрывалось сразу в случае запуска из EXE
         if getattr(sys, 'frozen', False):
-            input("Нажмите Enter для выхода...") 
+            input("Нажми Enter чтобы закрыть...") 
